@@ -1,9 +1,11 @@
 #!/usr/bin/env groovy
 
 def call() {
-  if (readMavenPom().getParent() == null) {
-    readMavenPom().getGroupId()
+  if (readMavenPom().getGroupId() == null){    
+    if (readMavenPom().getParent() != null) {
+      readMavenPom().getParent().getGroupId()    
+    }
   } else {
-    readMavenPom().getParent().getGroupId()
+    readMavenPom().getGroupId()
   }
 }
